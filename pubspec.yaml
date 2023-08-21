@@ -2,7 +2,7 @@ name: vpn_connection_monitor
 description: VpnConnectionMonitor is a Dart package that monitors the connection status of a VPN. It provides a singleton class with a stream of VpnConnectionState events and a method to check if the VPN is connected.
 repository: https://github.com/bazl-E/Vpn_connection_monitor
 
-version: 1.0.0+1
+version: 1.0.2
 
 environment:
   sdk: '>=3.1.0 <4.0.0'
