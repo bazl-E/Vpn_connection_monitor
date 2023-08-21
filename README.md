@@ -25,3 +25,35 @@ Import the `package` package in your `Dart/Flutter` file:
 ```
 import 'package:vpn_connection_monitor/vpn_connection_monitor.dart';
 ```
+
+Create a `VpnConnectionMonitor` Instance
+```
+final vpnMonitor = VpnConnectionMonitor(Duration(seconds: 30));
+```
+### Access the VPN Connection Stream
+```
+vpnMonitor.vpnConnectionStream.listen((state) {
+  if (state == VpnConnectionState.connected) {
+    print("VPN connected.");
+    // Handle VPN connected event
+  } else {
+    print("VPN disconnected.");
+    // Handle VPN disconnected event
+  }
+});
+```
+### Check the VPN Connection Status Manually
+```
+bool isVpnConnected = await vpnMonitor.isVpnActive();
+```
+
+### Dispose of the VpnConnectionMonitor Instance
+```
+vpnMonitor.dispose();
+```
+Example
+For a complete example of how to use this package, please refer to the example directory.
+
+Contributions
+Contributions are welcome! If you encounter any issues, have suggestions, or want to contribute to the project, please feel free to create issues, submit pull requests, or reach out to us.
+
