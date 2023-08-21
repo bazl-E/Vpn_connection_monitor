@@ -3,15 +3,26 @@ import 'dart:io';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
 
-enum VpnConnectionState { connected, disconnected }
+///[VpnConnectionState] has two values [connected],[disconnected]
+///return [VpnConnectionState.connected] if vpn connection is active
+///return [VpnConnectionState.disconnected] if vpn not available or disconnected
 
-///Singleton class which includes stream of vpn connection states
+enum VpnConnectionState {
+  /// The VPN is currently connected.
+  connected,
+
+  /// The VPN is currently disconnected.
+  disconnected
+}
+
+///[VpnConnectionMonitor]Singleton class which includes stream of vpn connection states
 ///also includes a single time check method [Future<bool> isVpnActive()]
 class VpnConnectionMonitor {
-  final StreamController<VpnConnectionState> _controller =
-      StreamController.broadcast();
-  late StreamSubscription<ConnectivityResult> _connectivitySubscription;
-
+  /// Creates or retrieves an instance of the VpnConnectionMonitor singleton.
+  factory VpnConnectionMonitor() {
+    _instance ??= VpnConnectionMonitor._private();
+    return _instance!;
+  }
   // Private constructor for the singleton
   VpnConnectionMonitor._private() {
     // Listen to network connectivity changes
@@ -21,16 +32,16 @@ class VpnConnectionMonitor {
       await _checkVpnStatus();
     });
   }
+  final StreamController<VpnConnectionState> _controller =
+      StreamController.broadcast();
+  late StreamSubscription<ConnectivityResult> _connectivitySubscription;
 
   ///Check weather a vpn is connected or not which returns a bool
   Future<bool> isVpnActive() async {
     try {
-      final interfaces = await NetworkInterface.list(
-        includeLoopback: false,
-        type: InternetAddressType.any,
-      );
+      final interfaces = await NetworkInterface.list();
 
-      return interfaces.any((interface) => commonVpnInterfaceNamePatterns
+      return interfaces.any((interface) => _commonVpnInterfaceNamePatterns
           .any((pattern) => interface.name.toLowerCase().contains(pattern)));
     } catch (e) {
       // Handle exceptions, e.g., if the network interface list cannot be retrieved
@@ -41,17 +52,12 @@ class VpnConnectionMonitor {
   // Singleton instance
   static VpnConnectionMonitor? _instance;
 
-  factory VpnConnectionMonitor() {
-    _instance ??= VpnConnectionMonitor._private();
-    return _instance!;
-  }
-
   /// Returns a stream of [VpnConnectionState]s that updates whenever there's an update in VPN connection status =
   Stream<VpnConnectionState> get vpnConnectionStream =>
       _controller.stream.asBroadcastStream();
 
   Future<void> _checkVpnStatus() async {
-    bool currentVpnStatus = await _isVpnActive();
+    final currentVpnStatus = await _isVpnActive();
 
     if (currentVpnStatus) {
       _controller.add(VpnConnectionState.connected);
@@ -64,7 +70,7 @@ class VpnConnectionMonitor {
     try {
       final interfaces = await NetworkInterface.list();
 
-      return interfaces.any((interface) => commonVpnInterfaceNamePatterns
+      return interfaces.any((interface) => _commonVpnInterfaceNamePatterns
           .any((pattern) => interface.name.toLowerCase().contains(pattern)));
     } catch (e) {
       // Handle exceptions, e.g., if the network interface list cannot be retrieved
@@ -72,22 +78,22 @@ class VpnConnectionMonitor {
     }
   }
 
-  /// Dispose all the [Connection] streams
+  /// Dispose all the Connection streams
   void dispose() {
     _controller.close();
     _connectivitySubscription.cancel();
   }
 
-  List<String> commonVpnInterfaceNamePatterns = [
-    "tun", // Linux/Unix TUN interface
-    "tap", // Linux/Unix TAP interface
-    "ppp", // Point-to-Point Protocol
-    "pptp", // PPTP VPN
-    "l2tp", // L2TP VPN
-    "ipsec", // IPsec VPN
-    "vpn", // Generic "VPN" keyword
-    "wireguard", // WireGuard VPN
-    "openvpn", // OpenVPN VPN
-    "softether", // SoftEther VPN
+  final List<String> _commonVpnInterfaceNamePatterns = [
+    'tun', // Linux/Unix TUN interface
+    'tap', // Linux/Unix TAP interface
+    'ppp', // Point-to-Point Protocol
+    'pptp', // PPTP VPN
+    'l2tp', // L2TP VPN
+    'ipsec', // IPsec VPN
+    'vpn', // Generic "VPN" keyword
+    'wireguard', // WireGuard VPN
+    'openvpn', // OpenVPN VPN
+    'softether', // SoftEther VPN
   ];
 }
