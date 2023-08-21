@@ -3,7 +3,7 @@ description: VPN connection monitoring in Dart. Singleton class with state strea
 repository: https://github.com/bazl-E/Vpn_connection_monitor
 homepage: https://github.com/bazl-E/Vpn_connection_monitor
 
-version: 1.0.2
+version: 1.0.4
 
 environment:
   sdk: '>=3.1.0 <4.0.0'
