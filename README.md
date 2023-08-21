@@ -58,3 +58,8 @@ For a complete example of how to use this package, please refer to the example d
 
 Contributions are welcome! If you encounter any issues, have suggestions, or want to contribute to the project, please feel free to create issues, submit pull requests, or reach out to us.
 
+### License
+
+This package is distributed under the MIT License. See LICENSE for more details.
+
+Enjoy monitoring your VPN connections with ease using the `vpn_connection_monitor` package!
