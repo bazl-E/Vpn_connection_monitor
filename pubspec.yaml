@@ -1,5 +1,5 @@
 name: vpn_connection_monitor
-description: A new Flutter project.
+description: VpnConnectionMonitor is a Dart package that monitors the connection status of a VPN. It provides a singleton class with a stream of VpnConnectionState events and a method to check if the VPN is connected.
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
