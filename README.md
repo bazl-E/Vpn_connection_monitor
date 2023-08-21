@@ -51,9 +51,9 @@ bool isVpnConnected = await vpnMonitor.isVpnActive();
 ```
 vpnMonitor.dispose();
 ```
-Example
+### Example
 For a complete example of how to use this package, please refer to the example directory.
 
-Contributions
+### Contributions
 Contributions are welcome! If you encounter any issues, have suggestions, or want to contribute to the project, please feel free to create issues, submit pull requests, or reach out to us.
 
