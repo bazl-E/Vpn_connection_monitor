@@ -6,7 +6,6 @@ The `vpn_connection_monitor` package provides a simple and efficient way to moni
 
 - Monitor VPN connection status with ease.
 - Detect changes in VPN connectivity and trigger events accordingly.
-- Allow users to set custom time intervals for checking VPN status.
 - Designed as a singleton for efficient resource management.
 
 ## Getting Started
