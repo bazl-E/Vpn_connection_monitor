@@ -18,3 +18,10 @@ Add the `vpn_connection_monitor` package to your `pubspec.yaml`:
 ```yaml
 dependencies:
   vpn_connection_monitor: ^1.0.0 # Use the latest version
+```
+
+### Installation
+Import the `package` package in your `Dart/Flutter` file:
+```
+import 'package:vpn_connection_monitor/vpn_connection_monitor.dart';
+```
