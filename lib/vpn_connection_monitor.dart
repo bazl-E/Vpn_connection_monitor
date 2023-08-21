@@ -5,6 +5,8 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 
 enum VpnConnectionState { connected, disconnected }
 
+///Single tone class which includes stream of vpn connection states
+///also includes a single time check method [Future<bool> isVpnActive()]
 class VpnConnectionMonitor {
   final StreamController<VpnConnectionState> _controller =
       StreamController.broadcast();
@@ -70,7 +72,7 @@ class VpnConnectionMonitor {
     }
   }
 
-  /// Dispose all the connection streams
+  /// Dispose all the [Connection] streams
   void dispose() {
     _controller.close();
     _connectivitySubscription.cancel();
