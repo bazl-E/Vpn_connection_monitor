@@ -1,16 +1,20 @@
-# vpn_connection_monitor
+# VPN Connection Monitor
 
-A new Flutter project.
+The `vpn_connection_monitor` package provides a simple and efficient way to monitor VPN connection status in a Dart/Flutter application. It includes a singleton class, `VpnConnectionMonitor`, that offers a stream of VPN connection states and a method to check the VPN connection status.
+
+## Features
+
+- Monitor VPN connection status with ease.
+- Detect changes in VPN connectivity and trigger events accordingly.
+- Allow users to set custom time intervals for checking VPN status.
+- Designed as a singleton for efficient resource management.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+### Installation
 
-A few resources to get you started if this is your first Flutter project:
+Add the `vpn_connection_monitor` package to your `pubspec.yaml`:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```yaml
+dependencies:
+  vpn_connection_monitor: ^1.0.0 # Use the latest version
