@@ -1,5 +1,5 @@
 # VPN Connection Monitor
-
+https://pub.dev/packages/vpn_connection_detector
 The `vpn_connection_monitor` package provides a simple and efficient way to monitor VPN connection status in a Dart/Flutter application. It includes a singleton class, `VpnConnectionMonitor`, that offers a stream of VPN connection states and a method to check the VPN connection status.
 
 ## Features
